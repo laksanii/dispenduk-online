@@ -15,6 +15,15 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('NIK')->unique();
+            $table->enum("gender", ["laki-laki", "perempuan"]);
+            $table->date("birthday");
+            $table->string("district");
+            $table->string("village");
+            $table->text("address");
+            $table->char("num_whatsapp", 15);
+            $table->string("selfie_url");
+            $table->string("username")->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
