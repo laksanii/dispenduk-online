@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Validator;
 class ApplicationController extends Controller
 {
     public function storeApplication(Request $request){
-
         $validator = Validator::make($request->all(), [
             'user_id' => 'required',
             'service_type_id' => 'required',
