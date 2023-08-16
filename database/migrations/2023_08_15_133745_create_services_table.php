@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string("service_name");
             $table->text("description");
+            $table->string("slug");
             $table->timestamps();
         });
     }
