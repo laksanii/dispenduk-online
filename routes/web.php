@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dispenduk.dashboard');
 });
 
 Route::get('/dashboard', function () {
@@ -30,7 +30,19 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/menu', function () {
-    return view('dispenduk.layouts.app');
+    return view('dispenduk.dashboard');
+});
+
+Route::get('/statistik', function () {
+    return view('dispenduk.statistik');
+});
+
+Route::get('/detail-layanan', function () {
+    return view('dispenduk.detailLayanan');
+});
+
+Route::get('/{layanan}/jenis-layanan', function () {
+    return view('dispenduk.jenisLayanan');
 });
 
 Route::post('/pengajuan-layanan', [ApplicationController::class, 'storeApplication']);
