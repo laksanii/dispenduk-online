@@ -13,21 +13,25 @@
                 KTP El diambil di Dukcapil Ogan Ilir.</x-slot>
             <x-slot name="requirements">
                 <ol class="list-decimal px-5">
-                    <li class="text-lg">Kartu Keluarga</li>
+                    @foreach ($requirements as $requirement)
+                        <li class="text-lg">{{ $requirement }}</li>
+                    @endforeach
                 </ol>
             </x-slot>
 
             <x-slot name="form">
-                FORM
+                FORM Belom dapet datanya
             </x-slot>
 
             <x-slot name="formUpload">
-                <div class="field mb-3">
-                    <label class="block mb-2 text-xl font-medium text-gray-900 " for="file_input">Kartu Keluarga</label>
-                    <input
-                        class="block w-full text-lg text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:border-slate-400 dark:placeholder-gray-400"
-                        id="file_input" type="file">
-                </div>
+                @foreach ($requirements_name as $index => $requirement_name)
+                    <div class="field mb-3">
+                        <label class="block mb-2 text-xl font-medium text-gray-900 " for="{{ $requirement_name }}">{{ $requirements[$index] }}</label>
+                        <input
+                            class="block w-full text-lg text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:border-slate-400 dark:placeholder-gray-400"
+                            id="{{ $requirement_name }}" type="file" name="requirement[{{ $requirement_name }}][]" multiple>
+                    </div>
+                @endforeach
             </x-slot>
         </x-detail-service>
     </div>

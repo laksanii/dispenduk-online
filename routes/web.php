@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,13 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('dispenduk.dashboard');
-});
+Route::get('/', [PageController::class, 'dashboard']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -29,21 +28,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/menu', function () {
-    return view('dispenduk.dashboard');
-});
+Route::get('/menu', [PageController::class, 'dashboard']);
 
 Route::get('/statistik', function () {
     return view('dispenduk.statistik');
 });
 
-Route::get('/detail-layanan', function () {
-    return view('dispenduk.detailLayanan');
-});
+Route::get('{jenis_layanan}/detail-layanan', [PageController::class, 'detailLayanan']);
 
-Route::get('/{layanan}/jenis-layanan', function () {
-    return view('dispenduk.jenisLayanan');
-});
+Route::get('/{layanan}/jenis-layanan', [PageController::class, 'jenisLayanan']);
 
 Route::post('/pengajuan-layanan', [ApplicationController::class, 'storeApplication']);
 

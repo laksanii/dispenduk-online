@@ -45,6 +45,6 @@
     </div>
 </form>
 
-<div class="btn-wrapper text-center mt-4">
-    <button class="bg-blue-500 text-white font-medium px-5 py-3 rounded-xl hover:bg-blue-600">Kirim</button>
+<div class="btn-wrapper text-center mt-4 pb-10 pt-5">
+    <button class="bg-blue-500 text-white font-medium px-7 py-3 rounded-xl hover:bg-blue-600">Kirim</button>
 </div>
