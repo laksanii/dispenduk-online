@@ -21,29 +21,37 @@
                 </button>
             </div>
             <div class="items-center hidden w-full xl:flex xl:w-auto xl:order-1 " id="navbar-sticky">
-                <ul
-                    class="flex flex-col xl:p-0 xl:flex-row xl:space-x-8 xl:mt-0 xl:border-0">
+                <ul class="flex w-full flex-col xl:p-0 xl:flex-row xl:mt-0 xl:border-0">
                     <li class="h-full">
-                        <a class="box-border block p-4 text-slate-700 xl:bg-transparent xl:border-t-4 h-full hover:bg-slate-50 hover:xl:border-t-4 hover:xl:border-sky-500" href="" aria-current="page"><i
-                            class="fa-solid fa-house mr-2"></i> Jenis Layanan</a>
+                        <a class="box-border block p-4 text-slate-700 xl:bg-transparent xl:border-t-4 h-full hover:bg-slate-50 hover:xl:border-t-4 hover:xl:border-sky-500"
+                            href="/" aria-current="page"><i class="fa-solid fa-house mr-2"></i> Jenis Layanan</a>
                     </li>
                     <li class="h-full">
-                        <a class="box-border block p-4 text-slate-700 xl:bg-transparent xl:border-t-4 h-full hover:bg-slate-50 hover:xl:border-t-4 hover:xl:border-sky-500" href="" aria-current="page"><i
-                            class="fa-solid fa-chart-simple mr-2"></i> Statistik</a>
+                        <a class="box-border block p-4 text-slate-700 xl:bg-transparent xl:border-t-4 h-full hover:bg-slate-50 hover:xl:border-t-4 hover:xl:border-sky-500"
+                            href="/statistik" aria-current="page"><i class="fa-solid fa-chart-simple mr-2"></i>
+                            Statistik</a>
                     </li>
-                    <li class="h-full">
-                        <a class="box-border block p-4 text-slate-700 xl:bg-transparent xl:border-t-4 h-full hover:bg-slate-50 hover:xl:border-t-4 hover:xl:border-sky-500" href="" aria-current="page"><i
-                            class="fa-solid fa-message mr-2"></i> Buat Pengaduan baru</a>
-                    </li>
-                    <li class="h-full">
-                        <a class="box-border block p-4 text-slate-700 xl:bg-transparent xl:border-t-4 h-full hover:bg-slate-50 hover:xl:border-t-4 hover:xl:border-sky-500" href="" aria-current="page"><i
-                            class="fa-solid fa-user mr-2"></i>Login User</a>
-                    </li>
-                    <li class="h-full">
-                        <a class="box-border block p-4 text-slate-700 xl:bg-transparent xl:border-t-4 h-full hover:bg-slate-50 hover:xl:border-t-4 hover:xl:border-sky-500" href="" aria-current="page"><i
-                            class="fa-solid fa-user-plus mr-2"></i> Pendaftaran User Baru</a>
-                    </li>
-                    
+                    @if (!auth()->user())
+                        <li class="h-full">
+                            <a class="box-border block p-4 text-slate-700 xl:bg-transparent xl:border-t-4 h-full hover:bg-slate-50 hover:xl:border-t-4 hover:xl:border-sky-500"
+                                href="/login" aria-current="page"><i class="fa-solid fa-user mr-2"></i>Login User</a>
+                        </li>
+                        <li class="h-full">
+                            <a class="box-border block p-4 text-slate-700 xl:bg-transparent xl:border-t-4 h-full hover:bg-slate-50 hover:xl:border-t-4 hover:xl:border-sky-500"
+                                href="/register" aria-current="page"><i class="fa-solid fa-user-plus mr-2"></i>
+                                Pendaftaran User Baru</a>
+                        </li>
+                    @else
+                        <form action="/logout" method="POST">
+                            <li class="h-full">
+                                <button type="submit" class="box-border block p-4 text-slate-700 xl:bg-transparent xl:border-t-4 h-full hover:bg-slate-50 hover:xl:border-t-4 hover:xl:border-sky-500"
+                                    href="logout" aria-current="page"><i
+                                        class="fa-solid fa-arrow-right-from-bracket"></i>
+                                    Logout</button>
+                            </li>
+                        </form>
+                    @endif
+
                 </ul>
             </div>
         </div>

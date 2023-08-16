@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,10 +9,12 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="https://kit.fontawesome.com/3e53fcc07c.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
     @include('dispenduk.components.navbar')
 
-    <main class="px-[6rem]">
+
+    <main class="px-10 xl:px-[6rem] pb-7">
         <div class="header py-4">
             {{ $header }}
         </div>
@@ -23,7 +26,8 @@
                 Untuk setiap permohonan layanan harap ditunggu dan jangan melakukan permohonan lebih dari satu kali
             </div>
         </div>
-        {{$slot}}
+        {{ $slot }}
     </main>
 </body>
+
 </html>

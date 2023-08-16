@@ -6,7 +6,9 @@ use App\Models\Service;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Application;
 use App\Models\ServiceType;
+use Carbon\Carbon;
 
 class PageController extends Controller
 {
@@ -36,7 +38,19 @@ class PageController extends Controller
         
         return view('dispenduk.detailLayanan', [
             'requirements' => json_decode($jenis_layanan->requirements),
-            'requirements_name' => $slug
+            'requirements_name' => $slug,
+            'service_type_id' => $jenis_layanan->id
+        ]);
+    }
+
+    public function statistic(){
+        $statistic = Application::whereDate('created_at', Carbon::today())->get();
+        $group = $statistic->groupBy('service_type_id');
+        $service_types = ServiceType::get();
+        return view('dispenduk.statistik', [
+            'application_count' => $statistic->count(),
+            'group' => $group,
+            'service_types' => $service_types
         ]);
     }
 }

@@ -26,18 +26,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('/pengajuan-layanan', [ApplicationController::class, 'storeApplication']);
 });
 
-Route::get('/menu', [PageController::class, 'dashboard']);
+Route::get('/dashboard', [PageController::class, 'dashboard']);
 
-Route::get('/statistik', function () {
-    return view('dispenduk.statistik');
-});
+Route::get('/statistik', [PageController::class, 'statistic']);
 
 Route::get('{jenis_layanan}/detail-layanan', [PageController::class, 'detailLayanan']);
 
 Route::get('/{layanan}/jenis-layanan', [PageController::class, 'jenisLayanan']);
-
-Route::post('/pengajuan-layanan', [ApplicationController::class, 'storeApplication']);
 
 require __DIR__.'/auth.php';

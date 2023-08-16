@@ -17,93 +17,35 @@
                 </div>
                 <div class=" text-2xl pl-9 py-2">
                     <p class="text-slate-300">Total Pengajuan</p>
-                    <p>0</p>
+                    <p>{{ $application_count }}</p>
 
                 </div>
             </div>
         </div>
         <hr>
         <div class="services-list grid grid-cols-2 xl:grid-cols-4 gap-7 p-5">
-            <div class="service rounded-lg py-6 bg-sky-400 justify-center text-white mt-5">
-                <div class="wrapper flex-column w-full px-5 gap-10">
-                    <div class="desc-wrapper ">
-                        <h3 class="text-base tracking-wide mb-3 font-medium">KTP-El (Baru Perekaman / Hilang / Rusak)
-                        </h3>
-                    </div>
-                    <div class="icon-wrapper text-4xl flex justify-between">
-                        <div class="icon ">
-                            <i class="fa-regular fa-id-card "></i>
+            @foreach ($service_types as $service_type)
+                <div class="service rounded-lg py-6 bg-sky-400 justify-center text-white mt-5">
+                    <div class="wrapper flex-column w-full px-5 gap-10">
+                        <div class="desc-wrapper ">
+                            <h3 class="text-base tracking-wide mb-3 font-medium">{{ $service_type->name }}
+                            </h3>
                         </div>
-                        <div class="count">
-                            0
-                        </div>
-                    </div>
-                </div>
-                <div class="button-wrapper w-full px-5 mt-3">
-                    <div class="bg-white w-full h-[10px] rounded-full"></div>
-                    <p class="font-medium uppercase mt-3"><span class="text-black ">Kuota :</span> Unlimited</p>
-                </div>
-            </div>
-            <div class="service rounded-lg py-6 bg-sky-400 justify-center text-white mt-5">
-                <div class="wrapper flex-column w-full px-5 gap-10">
-                    <div class="desc-wrapper ">
-                        <h3 class="text-base tracking-wide mb-3 font-medium">KTP-El (Baru Perekaman / Hilang / Rusak)
-                        </h3>
-                    </div>
-                    <div class="icon-wrapper text-4xl flex justify-between">
-                        <div class="icon ">
-                            <i class="fa-regular fa-id-card "></i>
-                        </div>
-                        <div class="count">
-                            0
+                        <div class="icon-wrapper text-4xl flex justify-between">
+                            <div class="icon ">
+                                <i class="fa-regular fa-id-card "></i>
+                            </div>
+                            <div class="count">
+                                {{ $group->has($service_type->id) ? count($group[$service_type->id]) : '0' }}
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="button-wrapper w-full px-5 mt-3">
-                    <div class="bg-white w-full h-[10px] rounded-full"></div>
-                    <p class="font-medium uppercase mt-3"><span class="text-black ">Kuota :</span> Unlimited</p>
-                </div>
-            </div>
-            <div class="service rounded-lg py-6 bg-sky-400 justify-center text-white mt-5">
-                <div class="wrapper flex-column w-full px-5 gap-10">
-                    <div class="desc-wrapper ">
-                        <h3 class="text-base tracking-wide mb-3 font-medium">KTP-El (Baru Perekaman / Hilang / Rusak)
-                        </h3>
-                    </div>
-                    <div class="icon-wrapper text-4xl flex justify-between">
-                        <div class="icon ">
-                            <i class="fa-regular fa-id-card "></i>
-                        </div>
-                        <div class="count">
-                            0
-                        </div>
+                    <div class="button-wrapper w-full px-5 mt-3">
+                        <div class="bg-white w-full h-[10px] rounded-full"></div>
+                        <p class="font-medium uppercase mt-3"><span class="text-black ">Kuota :</span> Unlimited</p>
                     </div>
                 </div>
-                <div class="button-wrapper w-full px-5 mt-3">
-                    <div class="bg-white w-full h-[10px] rounded-full"></div>
-                    <p class="font-medium uppercase mt-3"><span class="text-black ">Kuota :</span> Unlimited</p>
-                </div>
-            </div>
-            <div class="service rounded-lg py-6 bg-sky-400 justify-center text-white mt-5">
-                <div class="wrapper flex-column w-full px-5 gap-10">
-                    <div class="desc-wrapper ">
-                        <h3 class="text-base tracking-wide mb-3 font-medium">KTP-El (Baru Perekaman / Hilang / Rusak)
-                        </h3>
-                    </div>
-                    <div class="icon-wrapper text-4xl flex justify-between">
-                        <div class="icon ">
-                            <i class="fa-regular fa-id-card "></i>
-                        </div>
-                        <div class="count">
-                            0
-                        </div>
-                    </div>
-                </div>
-                <div class="button-wrapper w-full px-5 mt-3">
-                    <div class="bg-white w-full h-[10px] rounded-full"></div>
-                    <p class="font-medium uppercase mt-3"><span class="text-black ">Kuota :</span> Unlimited</p>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </x-layout>

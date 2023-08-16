@@ -9,28 +9,33 @@ use Illuminate\Support\Facades\Validator;
 
 class ApplicationController extends Controller
 {
-    public function storeApplication(Request $request){
-        $validator = Validator::make($request->all(), [
-            'user_id' => 'required',
+    public function storeApplication(Request $request)
+    {
+        $request->validate([
             'service_type_id' => 'required',
-            'requirements' => 'required',
-            'requirements.*' => 'required|mimes:png,jpg,pdf,jpeg'
+            'requirements.*.*' => 'mimes:png,jpg,pdf,jpeg'
+        ],[
+            'requirements.*.*.mimes' => 'Format file harus salah satu dari png, jpg, pdf, jpeg'
         ]);
 
-        if($validator->fails()){
-            return $validator->errors();
+        try {
+            $requirements = [];
+            foreach ($request->file('requirements') as $key => $value) {
+                foreach ($value as $file) {
+                    $requirements[$key] = $file->store('requirements/' . $key);
+                }
+            }
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('failure', 'Cek kembali data yang dikirim');
         }
-        
-        $requirements = [];
-        foreach($request->file('requirements') as $key => $value){
-            $requirements[$key] = $value->store('requirements/'.$key);
-        }
+
 
         $newKK_application = Application::Create(array_merge(
             $request->toArray(),
-            ['requirements'=> json_encode($requirements)]
+            ['requirements' => json_encode($requirements)],
+            ["user_id" => auth()->user()->id]
         ));
 
-        return $newKK_application;
+        return redirect()->back()->with('message', 'Pengajuan berhasil dikirim');
     }
 }
