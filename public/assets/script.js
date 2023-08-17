@@ -1,4 +1,1 @@
-function submitForm(){
-    const form = document.getElementById("myForm");
-    form.submit();
-}
+import ApexCharts from "../apexcharts";

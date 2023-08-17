@@ -4,10 +4,12 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\User;
+use App\Models\Admin;
 use App\Models\Service;
 use App\Models\ServiceType;
 use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -235,6 +237,12 @@ class DatabaseSeeder extends Seeder
             }
         }
         
+        Admin::create([
+            'name' => "admin",
+            'email' => "admin@gmail.com",
+            "password" => Hash::make('password'),
+            "num_whatsapp" => '0987654321',
+        ]);
 
     }
 }

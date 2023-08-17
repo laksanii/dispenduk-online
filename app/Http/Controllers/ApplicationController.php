@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Application;
+use App\Models\ServiceType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -37,5 +39,16 @@ class ApplicationController extends Controller
         ));
 
         return redirect()->back()->with('message', 'Pengajuan berhasil dikirim');
+    }
+
+    public function statistik(){
+        $statistic = Application::whereDate('created_at', Carbon::today())->get();
+        $group = $statistic->groupBy('service_type_id');
+        $service_types = ServiceType::get();
+
+        return response()->json([
+            'group' => $group,
+            'service_types' => $service_types
+        ]);
     }
 }

@@ -1,9 +1,9 @@
 <div class="shadow pb-5 mb-[100px] xl:mb-[120px]">
     <nav class="bg-white fixed w-full z-20 top-0 left-0 border-b border-gray-200 ">
         <div class="py-5 px-10 xl:px-[6rem] flex gap-3">
-            <img class="w-[30px]" src="https://dummyimage.com/400x400/ff0000/ffffff.png&text=Logo" alt="">
+            <img class="w-7" src="{{ asset('logo.png') }}" alt="">
             <h1 class="text-xl font-medium">
-                Disdukcapil Kabupaten/Kota
+                Dispenduk Bangkalan
             </h1>
         </div>
         <hr>
